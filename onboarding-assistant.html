@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Assistant</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #081225, #0f1f3d);
+      color: #ffffff;
+    }
+
+    .page {
+      height: 100vh;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      color: #7ec8ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #c7d3ea;
+      font-size: 1rem;
+    }
+
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    .panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #7ec8ff;
+    }
+
+    .panel p, .panel li {
+      color: #d8e3f3;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .diagram-box {
+      height: 180px;
+      border: 2px dashed rgba(126, 200, 255, 0.45);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9db7d8;
+      margin-top: 10px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .right-column {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <div></div>
+    </div>
+
+    <div>
+      <h1>Onboarding Assistant</h1>
+      <div class="subtitle">Guided onboarding support prototype</div>
+    </div>
+
+    <div class="content">
+      <div class="panel">
+        <h2>Overview</h2>
+        <p>
+          Onboarding Assistant is a prototype designed to help users move through onboarding
+          steps more easily by providing guided assistance, reducing confusion, and making the
+          process more consistent.
+        </p>
+
+        <h2 style="margin-top:16px;">Current Problem</h2>
+        <ul>
+          <li>Users may not know the right sequence of onboarding steps.</li>
+          <li>Important setup tasks can be missed or delayed.</li>
+          <li>Onboarding experiences may vary depending on who provides support.</li>
+        </ul>
+
+        <h2 style="margin-top:16px;">How It Helps</h2>
+        <ul>
+          <li>Guides users step by step through onboarding tasks.</li>
+          <li>Reduces dependency on manual back-and-forth communication.</li>
+          <li>Improves consistency and clarity across the onboarding journey.</li>
+        </ul>
+      </div>
+
+      <div class="right-column">
+        <div class="panel">
+          <h2>Use Case Diagram</h2>
+          <div class="diagram-box">
+            Add your Onboarding Assistant use case diagram here
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Architecture Diagram</h2>
+          <div class="diagram-box">
+            Add your Onboarding Assistant architecture diagram here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
