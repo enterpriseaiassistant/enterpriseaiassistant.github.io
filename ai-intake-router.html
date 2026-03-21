@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Intake Router</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #081225, #0f1f3d);
+      color: #ffffff;
+    }
+
+    .page {
+      height: 100vh;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      color: #7ec8ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #c7d3ea;
+      font-size: 1rem;
+    }
+
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    .panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #7ec8ff;
+    }
+
+    .panel p, .panel li {
+      color: #d8e3f3;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .diagram-box {
+      height: 180px;
+      border: 2px dashed rgba(126, 200, 255, 0.45);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9db7d8;
+      margin-top: 10px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .right-column {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <div></div>
+    </div>
+
+    <div>
+      <h1>AI Intake Router</h1>
+      <div class="subtitle">Email-to-ticket intake automation prototype</div>
+    </div>
+
+    <div class="content">
+      <div class="panel">
+        <h2>Overview</h2>
+        <p>
+          AI Intake Router is an intake automation prototype that processes incoming support emails
+          from start to finish. It reads the email, extracts issue details, identifies the issue
+          type, determines the correct system to use, creates the ticket, notifies the user,
+          assigns the work, and records the audit log.
+        </p>
+
+        <h2 style="margin-top:16px;">Current Problem</h2>
+        <ul>
+          <li>Support emails arrive unstructured and require manual review.</li>
+          <li>Teams must decide issue type and whether Jira or ServiceNow is the right destination.</li>
+          <li>Ticket creation, user updates, assignment, and audit logging can be repetitive and time-consuming.</li>
+        </ul>
+
+        <h2 style="margin-top:16px;">How It Helps</h2>
+        <ul>
+          <li>Extracts issue details automatically from the incoming email.</li>
+          <li>Classifies the issue and routes it to Jira or ServiceNow.</li>
+          <li>Creates a ticket, emails the user with the ticket number, assigns the work, and logs every action.</li>
+        </ul>
+      </div>
+
+      <div class="right-column">
+        <div class="panel">
+          <h2>Use Case Diagram</h2>
+          <div class="diagram-box">
+            Add your AI Intake Router use case diagram here
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Architecture Diagram</h2>
+          <div class="diagram-box">
+            Add your AI Intake Router architecture diagram here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
