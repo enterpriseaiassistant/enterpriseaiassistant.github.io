@@ -1,10 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Enterprise AI Assistant</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise AI Assistant | AI Prototype Showcase</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111827, #1e293b);
+      padding: 80px 0 60px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      color: #cbd5e1;
+    }
+
+    .hero-buttons {
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-right: 12px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .btn-secondary {
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #f8fafc;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .highlight {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .project-box {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 20px;
+    }
+
+    .project-box ul {
+      padding-left: 20px;
+    }
+
+    .project-box li {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        display: block;
+        margin-bottom: 12px;
+        margin-right: 0;
+        width: fit-content;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Enterprise AI Assistant 🚀</h1>
-  <p>This is my AI prototype showcase website.</p>
+  <header>
+    <div class="container hero">
+      <h1>Enterprise AI Assistant 🚀</h1>
+      <p>
+        I build AI-powered enterprise automation prototypes that improve support workflows,
+        route requests intelligently, and turn manual processes into scalable systems.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#about" class="btn btn-secondary">About This Work</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <h2>What I Build</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>AI Workflow Automation</h3>
+          <p>
+            Prototypes that connect email, forms, and business systems to reduce manual effort.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Intelligent Ticket Routing</h3>
+          <p>
+            AI that reads user issues, identifies the right category, and routes work to the correct system.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Observability & Logging</h3>
+          <p>
+            Visibility into confidence scores, decisions, and outcomes so AI actions can be reviewed and improved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2>Featured Project</h2>
+
+      <div class="project-box">
+        <h3>Enterprise Assistant</h3>
+        <p>
+          An AI-powered prototype that transforms incoming support requests into structured tickets and actionable workflows.
+        </p>
+
+        <ul>
+          <li><span class="highlight">Problem:</span> Support requests often arrive as unstructured emails, making triage slow and inconsistent.</li>
+          <li><span class="highlight">Solution:</span> Use AI to extract the issue, identify the application, classify the request type, and prepare ticket content automatically.</li>
+          <li><span class="highlight">Systems involved:</span> Outlook, AI processing layer, Google Sheets logging, ServiceNow/Jira routing.</li>
+          <li><span class="highlight">Key capabilities:</span> issue summarization, confidence scoring, routing logic, structured output generation, audit logging.</li>
+          <li><span class="highlight">Goal:</span> reduce manual intake effort and speed up support operations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Next Projects</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>SharePoint + GPT RAG</h3>
+          <p>
+            A retrieval-based AI assistant that answers questions using approved enterprise documents.
+          </p>
+        </div>
+        <div class="card">
+          <h3>AI Intake Dashboard</h3>
+          <p>
+            A dashboard to review AI decisions, error trends, confidence levels, and ticket outcomes.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Prototype Showcase</h3>
+          <p>
+            A growing collection of practical AI solutions for enterprise operations and support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Built by Srinivasa | Enterprise AI Prototype Showcase
+    </div>
+  </footer>
 </body>
 </html>
