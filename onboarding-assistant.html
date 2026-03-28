@@ -50,7 +50,7 @@
     .content {
       flex: 1;
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 40% 60%;
       gap: 18px;
       min-height: 0;
     }
@@ -84,7 +84,7 @@
     }
 
     .diagram-box {
-      height: 180px;
+      height: 200px;
       border: 2px dashed rgba(126, 200, 255, 0.45);
       border-radius: 14px;
       display: flex;
@@ -101,6 +101,22 @@
       grid-template-rows: 1fr 1fr;
       gap: 18px;
       min-height: 0;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tech-badge {
+      background: rgba(126, 200, 255, 0.14);
+      color: #dff3ff;
+      border: 1px solid rgba(126, 200, 255, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -125,11 +141,10 @@
           process more consistent.
         </p>
 
-        <h2 style="margin-top:16px;">Current Problem</h2>
+        <h2 style="margin-top:16px;">Key Challenges</h2>
         <ul>
-          <li>Users may not know the right sequence of onboarding steps.</li>
-          <li>Important setup tasks can be missed or delayed.</li>
-          <li>Onboarding experiences may vary depending on who provides support.</li>
+          <li><strong>Resource-intensive and time-consuming onboarding:</strong> User onboarding requires repeated execution of the same steps, which can make the process slow and labor-intensive.</li>
+          <li><strong>Experienced technical staff handling routine tasks:</strong> Skilled technical resources often spend time on repetitive, low-value onboarding activities instead of higher-value work.</li>
         </ul>
 
         <h2 style="margin-top:16px;">How It Helps</h2>
@@ -138,6 +153,14 @@
           <li>Reduces dependency on manual back-and-forth communication.</li>
           <li>Improves consistency and clarity across the onboarding journey.</li>
         </ul>
+
+        <h2 style="margin-top:16px;">Technology Used</h2>
+        <div class="tech-list">
+          <div class="tech-badge">GPT</div>
+          <div class="tech-badge">Jira Cloud</div>
+          <div class="tech-badge">ServiceNow</div>
+          <div class="tech-badge">RAG</div>
+        </div>
       </div>
 
       <div class="right-column">
