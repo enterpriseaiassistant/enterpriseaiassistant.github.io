@@ -50,7 +50,7 @@
     .content {
       flex: 1;
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 40% 60%;
       gap: 18px;
       min-height: 0;
     }
@@ -84,7 +84,7 @@
     }
 
     .diagram-box {
-      height: 180px;
+      height: 200px;
       border: 2px dashed rgba(126, 200, 255, 0.45);
       border-radius: 14px;
       display: flex;
@@ -101,6 +101,22 @@
       grid-template-rows: 1fr 1fr;
       gap: 18px;
       min-height: 0;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tech-badge {
+      background: rgba(126, 200, 255, 0.14);
+      color: #dff3ff;
+      border: 1px solid rgba(126, 200, 255, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -125,11 +141,11 @@
           effort in support operations.
         </p>
 
-        <h2 style="margin-top:16px;">Current Problem</h2>
+        <h2 style="margin-top:16px;">Key Challenges</h2>
         <ul>
-          <li>Support processes can be inconsistent and depend heavily on manual interpretation.</li>
-          <li>Requests may arrive in unstructured formats, making triage slower.</li>
-          <li>Teams spend time gathering information before action can begin.</li>
+          <li><strong>High volume of repetitive, low-value tasks:</strong> Support teams spend significant time answering the same questions repeatedly and troubleshooting common basic issues.</li>
+          <li><strong>Resource constraints affecting service delivery:</strong> Limited staffing or periods of peak demand can slow turnaround times and reduce overall support responsiveness.</li>
+          <li><strong>Delays for end users when capacity is exceeded:</strong> When support demand outpaces available resources, users experience longer wait times for help and issue resolution.</li>
         </ul>
 
         <h2 style="margin-top:16px;">How It Helps</h2>
@@ -138,6 +154,14 @@
           <li>Improves consistency in how issues are understood and processed.</li>
           <li>Creates a clearer path from request intake to action.</li>
         </ul>
+
+        <h2 style="margin-top:16px;">Technology Used</h2>
+        <div class="tech-list">
+          <div class="tech-badge">GPT</div>
+          <div class="tech-badge">Jira Cloud</div>
+          <div class="tech-badge">ServiceNow</div>
+          <div class="tech-badge">RAG</div>
+        </div>
       </div>
 
       <div class="right-column">
