@@ -9,24 +9,27 @@
 
     html, body {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #081225, #0f1f3d);
       color: #ffffff;
     }
 
+    body {
+      overflow-y: auto;
+    }
+
     .page {
-      height: 100vh;
-      padding: 28px 36px;
+      min-height: 100vh;
+      padding: 28px 36px 40px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
     .topbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
     }
 
@@ -37,22 +40,26 @@
       font-size: 0.95rem;
     }
 
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 4px;
+      font-size: 2.4rem;
+      margin-bottom: 2px;
     }
 
     .subtitle {
       color: #c7d3ea;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
-    .content {
-      flex: 1;
+    .summary-grid {
       display: grid;
-      grid-template-columns: 40% 60%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      min-height: 0;
     }
 
     .panel {
@@ -64,15 +71,15 @@
     }
 
     .panel h2 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 12px;
       color: #7ec8ff;
     }
 
     .panel p, .panel li {
       color: #d8e3f3;
-      line-height: 1.5;
-      font-size: 0.95rem;
+      line-height: 1.55;
+      font-size: 0.96rem;
     }
 
     ul {
@@ -83,36 +90,15 @@
       margin-bottom: 10px;
     }
 
-    .diagram-box {
-      height: 100%;
-      min-height: 320px;
-      border: none;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      margin-top: 10px;
-      padding: 10px;
-      overflow: hidden;
-    }
-
-    .architecture-image {
+    .full-width-panel {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .right-column {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 18px;
-      min-height: 0;
     }
 
     .tech-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .tech-badge {
@@ -123,44 +109,82 @@
       border-radius: 999px;
       font-size: 0.9rem;
     }
+
+    .diagram-wrapper {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .diagram-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .diagram-placeholder {
+      width: 100%;
+      min-height: 280px;
+      border: 2px dashed rgba(126, 200, 255, 0.35);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9db7d8;
+      text-align: center;
+      padding: 24px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: #b9cbe4;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 24px 20px 32px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="topbar">
       <a href="index.html" class="back-btn">← Back to Home</a>
-      <div></div>
     </div>
 
-    <div>
+    <div class="hero">
       <h1>Enterprise Assistant</h1>
       <div class="subtitle">AI support prototype for enterprise workflows</div>
     </div>
 
-    <div class="content">
+    <div class="summary-grid">
       <div class="panel">
         <h2>Overview</h2>
         <p>
-          Enterprise Assistant is an AI prototype focused on improving how enterprise support
-          requests are handled. It helps structure requests, guide workflows, and reduce manual
-          effort in support operations.
+          Enterprise Assistant is an AI-powered support interface designed to streamline how users
+          interact with enterprise applications. It provides application-specific answers using
+          approved documentation, guides users through troubleshooting steps, and enables controlled
+          ticket creation in Jira or ServiceNow when escalation is required.
         </p>
+      </div>
 
-        <h2 style="margin-top:16px;">Key Challenges</h2>
-        <ul>
-          <li><strong>High volume of repetitive, low-value tasks:</strong> Support teams spend significant time answering the same questions repeatedly and troubleshooting common basic issues.</li>
-          <li><strong>Resource constraints affecting service delivery:</strong> Limited staffing or periods of peak demand can slow turnaround times and reduce overall support responsiveness.</li>
-          <li><strong>Delays for end users when capacity is exceeded:</strong> When support demand outpaces available resources, users experience longer wait times for help and issue resolution.</li>
-        </ul>
-
-        <h2 style="margin-top:16px;">How It Helps</h2>
-        <ul>
-          <li>Introduces structure to incoming support requests.</li>
-          <li>Improves consistency in how issues are understood and processed.</li>
-          <li>Creates a clearer path from request intake to action.</li>
-        </ul>
-
-        <h2 style="margin-top:16px;">Technology Used</h2>
+      <div class="panel">
+        <h2>Technology Used</h2>
         <div class="tech-list">
           <div class="tech-badge">OpenAI GPT</div>
           <div class="tech-badge">Jira Cloud</div>
@@ -169,20 +193,52 @@
         </div>
       </div>
 
-      <div class="right-column">
-        <div class="panel">
-          <h2>Use Case Diagram</h2>
-          <div class="diagram-box">
-            Add your Enterprise Assistant use case diagram here
-          </div>
-        </div>
+      <div class="panel">
+        <h2>Key Challenges</h2>
+        <ul>
+          <li><strong>High volume of repetitive, low-value tasks:</strong> Support teams spend significant time answering the same questions repeatedly and troubleshooting common basic issues.</li>
+          <li><strong>Resource constraints affecting service delivery:</strong> Limited staffing or periods of peak demand can slow turnaround times and reduce overall support responsiveness.</li>
+          <li><strong>Delays for end users when capacity is exceeded:</strong> When support demand outpaces available resources, users experience longer wait times for help and issue resolution.</li>
+        </ul>
+      </div>
 
-        <div class="panel">
-          <h2>Architecture Diagram</h2>
-          <div class="diagram-box">
-            <img src="enterprise-assistant-architecture.png" alt="Enterprise Assistant Architecture Diagram" class="architecture-image">
-          </div>
+      <div class="panel">
+        <h2>How It Helps</h2>
+        <ul>
+          <li>Uses approved documentation as the authoritative knowledge source for application-specific responses.</li>
+          <li>Guides users through structured troubleshooting flows before escalation.</li>
+          <li>Classifies requests and routes escalations to Jira or ServiceNow based on issue type.</li>
+          <li>Enforces confirmation before ticket creation to support controlled and auditable actions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel full-width-panel">
+      <h2>Use Case Diagram</h2>
+      <div class="diagram-wrapper">
+        <div class="diagram-placeholder">
+          Add your Enterprise Assistant use case diagram here
         </div>
+      </div>
+      <div class="caption">
+        This diagram can illustrate how end users interact with the assistant for application questions,
+        troubleshooting guidance, and escalation to the appropriate support platform.
+      </div>
+    </div>
+
+    <div class="panel full-width-panel">
+      <h2>Architecture Diagram</h2>
+      <div class="diagram-wrapper">
+        <img
+          src="enterprise-assistant-architecture.png"
+          alt="Enterprise Assistant Architecture Diagram"
+          class="diagram-image"
+        />
+      </div>
+      <div class="caption">
+        The architecture shows how the assistant combines OpenAI GPT, document-based retrieval,
+        governance controls, decision logic, and authenticated integrations with Jira Cloud and
+        ServiceNow.
       </div>
     </div>
   </div>
