@@ -111,29 +111,27 @@
     }
 
     .diagram-wrapper {
-      width: 100%;
-      background: rgba(255,255,255,0.03);
-      border-radius: 14px;
-      padding: 12px;
-      overflow: hidden;
-      text-align: center;
-    }
+  width: 100%;
+  height: 520px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .diagram-image {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
-    }
-
-    .usecase-image {
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto;
-      display: block;
-    }
-
+.diagram-image,
+.usecase-image {
+  max-width: 100%;
+  max-height: calc(100% - 24px);
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
     .caption {
       margin-top: 10px;
       color: #b9cbe4;
