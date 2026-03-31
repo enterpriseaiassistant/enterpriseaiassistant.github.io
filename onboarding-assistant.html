@@ -9,24 +9,27 @@
 
     html, body {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #081225, #0f1f3d);
       color: #ffffff;
     }
 
+    body {
+      overflow-y: auto;
+    }
+
     .page {
-      height: 100vh;
-      padding: 28px 36px;
+      min-height: 100vh;
+      padding: 28px 36px 40px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
     .topbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
     }
 
@@ -37,22 +40,26 @@
       font-size: 0.95rem;
     }
 
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 4px;
+      font-size: 2.4rem;
+      margin-bottom: 2px;
     }
 
     .subtitle {
       color: #c7d3ea;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
-    .content {
-      flex: 1;
+    .summary-grid {
       display: grid;
-      grid-template-columns: 40% 60%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      min-height: 0;
     }
 
     .panel {
@@ -64,15 +71,15 @@
     }
 
     .panel h2 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 12px;
       color: #7ec8ff;
     }
 
     .panel p, .panel li {
       color: #d8e3f3;
-      line-height: 1.5;
-      font-size: 0.95rem;
+      line-height: 1.55;
+      font-size: 0.96rem;
     }
 
     ul {
@@ -83,31 +90,15 @@
       margin-bottom: 10px;
     }
 
-    .diagram-box {
-      height: 200px;
-      border: 2px dashed rgba(126, 200, 255, 0.45);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #9db7d8;
-      margin-top: 10px;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .right-column {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 18px;
-      min-height: 0;
+    .full-width-panel {
+      width: 100%;
     }
 
     .tech-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .tech-badge {
@@ -118,21 +109,64 @@
       border-radius: 999px;
       font-size: 0.9rem;
     }
+
+    .diagram-wrapper {
+      width: 100%;
+      height: 520px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 12px;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .diagram-image,
+    .usecase-image {
+      max-width: 100%;
+      max-height: calc(100% - 24px);
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: #b9cbe4;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 24px 20px 32px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="topbar">
       <a href="index.html" class="back-btn">← Back to Home</a>
-      <div></div>
     </div>
 
-    <div>
+    <div class="hero">
       <h1>Onboarding Assistant</h1>
       <div class="subtitle">Guided onboarding support prototype</div>
     </div>
 
-    <div class="content">
+    <div class="summary-grid">
       <div class="panel">
         <h2>Overview</h2>
         <p>
@@ -140,43 +174,66 @@
           steps more easily by providing guided assistance, reducing confusion, and making the
           process more consistent.
         </p>
+      </div>
 
-        <h2 style="margin-top:16px;">Key Challenges</h2>
-        <ul>
-          <li><strong>Resource-intensive and time-consuming onboarding:</strong> User onboarding requires repeated execution of the same steps, which can make the process slow and labor-intensive.</li>
-          <li><strong>Experienced technical staff handling routine tasks:</strong> Skilled technical resources often spend time on repetitive, low-value onboarding activities instead of higher-value work.</li>
-        </ul>
-
-        <h2 style="margin-top:16px;">How It Helps</h2>
-        <ul>
-          <li>Guides users step by step through onboarding tasks.</li>
-          <li>Reduces dependency on manual back-and-forth communication.</li>
-          <li>Improves consistency and clarity across the onboarding journey.</li>
-        </ul>
-
-        <h2 style="margin-top:16px;">Technology Used</h2>
+      <div class="panel">
+        <h2>Technology Used</h2>
         <div class="tech-list">
-          <div class="tech-badge">GPT</div>
+          <div class="tech-badge">OpenAI GPT</div>
           <div class="tech-badge">Jira Cloud</div>
           <div class="tech-badge">ServiceNow</div>
           <div class="tech-badge">RAG</div>
         </div>
       </div>
 
-      <div class="right-column">
-        <div class="panel">
-          <h2>Use Case Diagram</h2>
-          <div class="diagram-box">
-            Add your Onboarding Assistant use case diagram here
-          </div>
-        </div>
+      <div class="panel">
+        <h2>Key Challenges</h2>
+        <ul>
+          <li><strong>Resource-intensive and time-consuming onboarding:</strong> User onboarding requires repeated execution of the same steps, which can make the process slow and labor-intensive.</li>
+          <li><strong>Experienced technical staff handling routine tasks:</strong> Skilled technical resources often spend time on repetitive, low-value onboarding activities instead of higher-value work.</li>
+        </ul>
+      </div>
 
-        <div class="panel">
-          <h2>Architecture Diagram</h2>
-          <div class="diagram-box">
-            Add your Onboarding Assistant architecture diagram here
-          </div>
-        </div>
+      <div class="panel">
+        <h2>How It Helps</h2>
+        <ul>
+          <li>Guides users through onboarding steps in a structured and consistent way.</li>
+          <li>Reduces repetitive manual support effort for common onboarding requests.</li>
+          <li>Improves clarity and user experience during the onboarding process.</li>
+          <li>Helps shift routine support work away from experienced technical staff.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel full-width-panel">
+      <h2>Use Case Diagram</h2>
+      <div class="diagram-wrapper">
+        <img
+          src="onboarding-assistant-usecase.png"
+          alt="Onboarding Assistant Use Case Diagram"
+          class="usecase-image"
+        />
+      </div>
+      <div class="caption">
+        This use case diagram shows how users interact with the onboarding assistant to receive
+        guided onboarding support, follow required steps, and complete onboarding tasks with
+        improved consistency and less manual assistance.
+      </div>
+    </div>
+
+    <div class="panel full-width-panel">
+      <h2>Architecture Diagram</h2>
+      <div class="diagram-wrapper">
+        <img
+          src="onboarding-assistant-architecture.png"
+          alt="Onboarding Assistant Architecture Diagram"
+          class="diagram-image"
+        />
+      </div>
+      <div class="caption">
+        The architecture shows how the onboarding assistant combines OpenAI GPT, document-based
+        retrieval, and enterprise workflow logic to guide users through onboarding activities in a
+        more structured and efficient manner.
       </div>
     </div>
   </div>
