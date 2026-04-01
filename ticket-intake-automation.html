@@ -95,10 +95,9 @@
     }
 
     .tech-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 12px;
     }
 
     .tech-badge {
@@ -179,14 +178,14 @@
       </div>
 
       <div class="panel">
-        <h2>Technology Used</h2>
+        <h2>Technology Stack Used</h2>
         <div class="tech-list">
-          <div class="tech-badge">OpenAI GPT</div>
+          <div class="tech-badge">OpenAI</div>
           <div class="tech-badge">Make</div>
-          <div class="tech-badge">Jira Cloud</div>
-          <div class="tech-badge">ServiceNow</div>
           <div class="tech-badge">Google Sheets</div>
           <div class="tech-badge">Outlook</div>
+          <div class="tech-badge">Jira Cloud</div>
+          <div class="tech-badge">ServiceNow</div>
         </div>
       </div>
 
