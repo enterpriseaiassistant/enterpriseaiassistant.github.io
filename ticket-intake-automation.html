@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-Powered Ticket Intake Automation</title>
+  <title>Ticket Intake Automation</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #081225, #0f1f3d);
       color: #ffffff;
     }
 
+    body {
+      overflow-y: auto;
+    }
+
     .page {
-      height: 100vh;
-      padding: 28px 36px;
+      min-height: 100vh;
+      padding: 28px 36px 40px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
     .topbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
     }
 
@@ -37,22 +40,26 @@
       font-size: 0.95rem;
     }
 
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 4px;
+      font-size: 2.4rem;
+      margin-bottom: 2px;
     }
 
     .subtitle {
       color: #c7d3ea;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
-    .content {
-      flex: 1;
+    .summary-grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      min-height: 0;
     }
 
     .panel {
@@ -64,15 +71,15 @@
     }
 
     .panel h2 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 12px;
       color: #7ec8ff;
     }
 
     .panel p, .panel li {
       color: #d8e3f3;
-      line-height: 1.5;
-      font-size: 0.95rem;
+      line-height: 1.55;
+      font-size: 0.96rem;
     }
 
     ul {
@@ -83,24 +90,68 @@
       margin-bottom: 10px;
     }
 
-    .diagram-box {
-      height: 180px;
-      border: 2px dashed rgba(126, 200, 255, 0.45);
+    .full-width-panel {
+      width: 100%;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .tech-badge {
+      background: rgba(126, 200, 255, 0.14);
+      color: #dff3ff;
+      border: 1px solid rgba(126, 200, 255, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .diagram-wrapper {
+      width: 100%;
+      height: 520px;
+      background: rgba(255,255,255,0.03);
       border-radius: 14px;
+      padding: 12px;
+      overflow: hidden;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #9db7d8;
-      margin-top: 10px;
-      text-align: center;
-      padding: 20px;
     }
 
-    .right-column {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 18px;
-      min-height: 0;
+    .diagram-image,
+    .usecase-image {
+      max-width: 100%;
+      max-height: calc(100% - 24px);
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: #b9cbe4;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 24px 20px 32px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -108,55 +159,85 @@
   <div class="page">
     <div class="topbar">
       <a href="index.html" class="back-btn">← Back to Home</a>
-      <div></div>
     </div>
 
-    <div>
-      <h1>AI-Powered Ticket Intake Automation</h1>
-      <div class="subtitle">
-  Eliminating manual triage and accelerating resolution
-      </div>
+    <div class="hero">
+      <h1>Ticket Intake Automation</h1>
+      <div class="subtitle">AI-powered email-to-ticket automation prototype</div>
     </div>
 
-    <div class="content">
+    <div class="summary-grid">
       <div class="panel">
         <h2>Overview</h2>
         <p>
-          AI Intake Router is an intake automation prototype that processes incoming support emails
-          from start to finish. It reads the email, extracts issue details, identifies the issue
-          type, determines the correct system to use, creates the ticket, notifies the user,
-          assigns the work, and records the audit log.
+          Ticket Intake Automation is an AI-powered prototype that processes incoming support
+          emails from start to finish with minimal manual intervention. It reads the email,
+          extracts issue details, classifies the request type, determines whether Jira or
+          ServiceNow should be used, creates the ticket, notifies the requester, assigns the work,
+          and records the full audit trail.
         </p>
+      </div>
 
-        <h2 style="margin-top:16px;">Current Problem</h2>
-        <ul>
-          <li>Support emails arrive unstructured and require manual review.</li>
-          <li>Teams must decide issue type and whether Jira or ServiceNow is the right destination.</li>
-          <li>Ticket creation, user updates, assignment, and audit logging can be repetitive and time-consuming.</li>
-        </ul>
+      <div class="panel">
+        <h2>Technology Used</h2>
+        <div class="tech-list">
+          <div class="tech-badge">OpenAI GPT</div>
+          <div class="tech-badge">Make</div>
+          <div class="tech-badge">Jira Cloud</div>
+          <div class="tech-badge">ServiceNow</div>
+          <div class="tech-badge">Google Sheets</div>
+          <div class="tech-badge">Outlook</div>
+        </div>
+      </div>
 
-        <h2 style="margin-top:16px;">How It Helps</h2>
+      <div class="panel">
+        <h2>Key Challenges</h2>
         <ul>
-          <li>Extracts issue details automatically from the incoming email.</li>
-          <li>Classifies the issue and routes it to Jira or ServiceNow.</li>
-          <li>Creates a ticket, emails the user with the ticket number, assigns the work, and logs every action.</li>
+          <li><strong>Unstructured support requests:</strong> Incoming emails require manual review to understand the issue and extract the details needed for ticket creation.</li>
+          <li><strong>Inconsistent routing decisions:</strong> Teams must decide whether each issue belongs in Jira or ServiceNow, which can vary by person and slow intake.</li>
+          <li><strong>Repetitive manual follow-up work:</strong> Ticket creation, requester notification, work assignment, and audit logging are repetitive tasks that consume support time.</li>
         </ul>
       </div>
 
-      <div class="right-column">
-        <div class="panel">
-          <h2>Use Case Diagram</h2>
-          <div class="diagram-box">
-            Add your AI Intake Router use case diagram here
-          </div>
-        </div>
+      <div class="panel">
+        <h2>How It Helps</h2>
+        <ul>
+          <li>Automatically reads incoming support emails and extracts key issue details.</li>
+          <li>Classifies the request and routes it to Jira or ServiceNow based on the issue type.</li>
+          <li>Creates the ticket and sends a confirmation email with the ticket number.</li>
+          <li>Assigns the work and records actions in an audit log for visibility and traceability.</li>
+        </ul>
+      </div>
+    </div>
 
-        <div class="panel">
-          <h2>Architecture Diagram</h2>
-          <div class="diagram-box">
-            Add your AI Intake Router architecture diagram here
-          </div>
-        </div>
+    <div class="panel full-width-panel">
+      <h2>Use Case Diagram</h2>
+      <div class="diagram-wrapper">
+        <img
+          src="ticket-intake-automation-usecase.png"
+          alt="Ticket Intake Automation Use Case Diagram"
+          class="usecase-image"
+        />
+      </div>
+      <div class="caption">
+        This use case diagram shows how incoming support emails are processed by the automation to
+        extract issue details, classify requests, route to the correct platform, create tickets,
+        notify the requester, and assign work.
+      </div>
+    </div>
+
+    <div class="panel full-width-panel">
+      <h2>Architecture Diagram</h2>
+      <div class="diagram-wrapper">
+        <img
+          src="ticket-intake-automation-architecture.png"
+          alt="Ticket Intake Automation Architecture Diagram"
+          class="diagram-image"
+        />
+      </div>
+      <div class="caption">
+        The architecture shows how the solution uses Outlook, OpenAI GPT, Make, Jira Cloud,
+        ServiceNow, and logging components to automate end-to-end ticket intake and routing.
       </div>
     </div>
   </div>
