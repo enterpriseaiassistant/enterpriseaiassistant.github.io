@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enterprise AI</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -52,6 +53,16 @@
       max-width: 860px;
       margin: 0 auto;
       line-height: 1.5;
+    }
+
+    .header a {
+      color: #7ec8ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
     }
 
     .ecosystem-note {
@@ -140,13 +151,17 @@
     }
   </style>
 </head>
+
 <body>
   <div class="page">
+
     <div class="header">
       <h1>Enterprise AI</h1>
       <p>
-        This website showcases AI projects I have built. Select a prototype to view its use case,
-        architecture, key challenges, and how the solution addresses them.
+        AI prototypes designed and built by 
+        <strong>Srinivasa Karri</strong> 
+        (<a href="https://www.linkedin.com/in/srinivasakarri/" target="_blank">LinkedIn</a>),
+        focused on AI-driven enterprise systems and intelligent automation.
       </p>
     </div>
 
@@ -158,6 +173,8 @@
     </div>
 
     <div class="tiles">
+
+      <!-- Onboarding FIRST -->
       <a class="tile" href="onboarding-assistant.html">
         <div>
           <h2>Onboarding Assistant</h2>
@@ -169,6 +186,7 @@
         <div class="tile-footer">View Prototype →</div>
       </a>
 
+      <!-- Enterprise SECOND -->
       <a class="tile" href="enterprise-assistant.html">
         <div>
           <h2>Enterprise Assistant</h2>
@@ -180,6 +198,7 @@
         <div class="tile-footer">View Prototype →</div>
       </a>
 
+      <!-- Ticket Intake THIRD -->
       <a class="tile" href="ticket-intake-automation.html">
         <div>
           <h2>Ticket Intake Automation</h2>
@@ -190,6 +209,7 @@
         </div>
         <div class="tile-footer">View Prototype →</div>
       </a>
+
     </div>
   </div>
 </body>
