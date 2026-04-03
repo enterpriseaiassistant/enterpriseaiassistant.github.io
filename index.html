@@ -38,7 +38,7 @@
 
     .header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .header h1 {
@@ -49,9 +49,27 @@
     .header p {
       font-size: 1.05rem;
       color: #c7d3ea;
-      max-width: 850px;
+      max-width: 860px;
       margin: 0 auto;
       line-height: 1.5;
+    }
+
+    .ecosystem-note {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 28px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #d7e2f3;
+      line-height: 1.55;
+      font-size: 0.98rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .ecosystem-note strong {
+      color: #7ec8ff;
     }
 
     .tiles {
@@ -99,13 +117,6 @@
       font-size: 0.95rem;
     }
 
-    .footer-note {
-      text-align: center;
-      margin-top: 18px;
-      color: #a9bad8;
-      font-size: 0.9rem;
-    }
-
     @media (max-width: 1024px) {
       .page {
         padding: 24px;
@@ -122,6 +133,10 @@
       .tile p {
         font-size: 0.92rem;
       }
+
+      .ecosystem-note {
+        font-size: 0.92rem;
+      }
     }
   </style>
 </head>
@@ -131,28 +146,35 @@
       <h1>Enterprise AI</h1>
       <p>
         This website showcases AI projects I have built. Select a prototype to view its use case,
-        architecture, current challenges, and how the solution addresses them.
+        architecture, key challenges, and how the solution addresses them.
       </p>
     </div>
 
+    <div class="ecosystem-note">
+      These three solutions form a connected AI-powered support ecosystem:
+      <strong>Onboarding Assistant</strong> prepares users to get started correctly,
+      <strong>Enterprise Assistant</strong> provides real-time guided support,
+      and <strong>Ticket Intake Automation</strong> improves backend efficiency by automating ticket intake and routing.
+    </div>
+
     <div class="tiles">
-      <a class="tile" href="enterprise-assistant.html">
+      <a class="tile" href="onboarding-assistant.html">
         <div>
-          <h2>Enterprise Assistant</h2>
+          <h2>Onboarding Assistant</h2>
           <p>
-            An AI-powered enterprise support prototype designed to assist with internal requests,
-            improve support workflows, and make issue handling more structured and efficient.
+            A guided onboarding prototype that helps users navigate setup steps, review required
+            policies, and complete onboarding in a structured and consistent way.
           </p>
         </div>
         <div class="tile-footer">View Prototype →</div>
       </a>
 
-      <a class="tile" href="onboarding-assistant.html">
+      <a class="tile" href="enterprise-assistant.html">
         <div>
-          <h2>Onboarding Assistant</h2>
+          <h2>Enterprise Assistant</h2>
           <p>
-            A guided onboarding prototype that helps users navigate setup steps, understand
-            required actions, and move through the onboarding process with less confusion and delay.
+            An AI-powered enterprise support prototype that answers application-specific questions,
+            guides troubleshooting, and escalates unresolved issues through controlled ticket creation.
           </p>
         </div>
         <div class="tile-footer">View Prototype →</div>
@@ -162,17 +184,12 @@
         <div>
           <h2>Ticket Intake Automation</h2>
           <p>
-            An intake automation prototype that reads incoming emails, extracts issue details,
-            identifies issue type, selects Jira or ServiceNow, creates a ticket, sends confirmation,
-            assigns work, and logs the full audit trail.
+            An AI-powered intake automation prototype that reads incoming emails, classifies issues,
+            routes requests to Jira or ServiceNow, and automates ticket creation, notification, and assignment.
           </p>
         </div>
         <div class="tile-footer">View Prototype →</div>
       </a>
-    </div>
-
-    <div class="footer-note">
-      Version 1 • More detailed diagrams and explanations can be added to each prototype page
     </div>
   </div>
 </body>
