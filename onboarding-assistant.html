@@ -140,21 +140,37 @@
       width: 100%;
     }
 
-    .tech-list {
+    /* ===== TECHNOLOGY STACK (2 ROWS ONLY) ===== */
+
+    .tech-two-rows {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      gap: 12px;
       margin-top: 6px;
+    }
+
+    .tech-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .tech-row:first-child {
+      flex-wrap: nowrap;
+    }
+
+    .tech-row:last-child {
+      flex-wrap: wrap;
     }
 
     .tech-badge {
       background: #eff6ff;
       color: var(--accent-primary);
       border: 1px solid #bfdbfe;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 999px;
       font-size: 0.9rem;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .diagram-wrapper {
@@ -226,11 +242,20 @@
 
       <div class="panel">
         <h2>Technology Stack Used</h2>
-        <div class="tech-list">
-          <div class="tech-badge">OpenAI GPT</div>
-          <div class="tech-badge">Retrieval-Augmented Generation (RAG)</div>
-          <div class="tech-badge">ServiceNow</div>
+
+        <div class="tech-two-rows">
+          <!-- Row 1 -->
+          <div class="tech-row">
+            <div class="tech-badge">OpenAI GPT</div>
+            <div class="tech-badge">Retrieval-Augmented Generation (RAG)</div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="tech-row">
+            <div class="tech-badge">ServiceNow</div>
+          </div>
         </div>
+
       </div>
 
       <div class="panel">
