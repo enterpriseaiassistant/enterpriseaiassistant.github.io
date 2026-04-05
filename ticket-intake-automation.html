@@ -61,16 +61,33 @@
       min-height: 100vh;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 28px 36px 40px;
+      padding: 12px 36px 40px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .topbar {
+    .header-row {
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
     }
 
     .back-btn {
@@ -78,27 +95,12 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
+      margin-top: 6px;
+      white-space: nowrap;
     }
 
     .back-btn:hover {
       text-decoration: underline;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 2px;
-      color: #0f172a;
-    }
-
-    .subtitle {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
     }
 
     .summary-grid {
@@ -201,40 +203,46 @@
     }
 
     @media (max-width: 900px) {
+      .header-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
       .summary-grid {
         grid-template-columns: 1fr;
       }
 
       .page {
-        padding: 24px 20px 32px;
+        padding: 12px 20px 32px;
       }
 
       h1 {
         font-size: 2rem;
+      }
+
+      .tech-row:first-child {
+        flex-wrap: wrap;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="topbar">
-      <a href="index.html" class="back-btn">← Back to Home</a>
-    </div>
 
-    <div class="hero">
-      <h1>Ticket Intake Automation</h1>
-      <div class="subtitle">AI-powered email-to-ticket automation prototype</div>
+    <div class="header-row">
+      <div class="title-block">
+        <h1>Ticket Intake Automation</h1>
+        <div class="subtitle">AI-powered email-to-ticket automation prototype</div>
+      </div>
+
+      <a href="index.html" class="back-btn">← Back to Home</a>
     </div>
 
     <div class="summary-grid">
       <div class="panel">
         <h2>Overview</h2>
         <p>
-          Ticket Intake Automation is an AI-powered prototype that processes incoming support
-          emails from start to finish with minimal manual intervention. It reads the email,
-          extracts issue details, classifies the request type, determines whether Jira or
-          ServiceNow should be used, creates the ticket, notifies the requester, assigns the work,
-          and records the full audit trail.
+          Ticket Intake Automation is an AI-powered intake interface that processes support emails end-to-end by extracting issue details, classifying requests, routing them to Jira or ServiceNow, creating tickets, assigning work, notifying users, and maintaining a complete audit trail. When requests lack sufficient detail, it proactively collects the required information.
         </p>
       </div>
 
@@ -262,19 +270,19 @@
       <div class="panel">
         <h2>Key Challenges</h2>
         <ul>
-          <li><strong>Unstructured support requests:</strong> Incoming emails require manual review to understand the issue and extract the details needed for ticket creation.</li>
-          <li><strong>Inconsistent routing decisions:</strong> Teams must decide whether each issue belongs in Jira or ServiceNow, which can vary by person and slow intake.</li>
-          <li><strong>Repetitive manual follow-up work:</strong> Ticket creation, requester notification, work assignment, and audit logging are repetitive tasks that consume support time.</li>
+          <li><strong>Unstructured support requests:</strong> Incoming emails must be reviewed to understand the issue and extract the information needed for ticket creation.</li>
+          <li><strong>Inconsistent routing decisions across systems:</strong> Determining whether a request belongs in Jira or ServiceNow varies by individual and slows down intake.</li>
+          <li><strong>High volume of repetitive, low-value tasks:</strong> Ticket creation, requester communication, assignment, and audit logging require repeated manual effort.</li>
         </ul>
       </div>
 
       <div class="panel">
         <h2>How It Helps</h2>
         <ul>
-          <li>Automatically reads incoming support emails and extracts key issue details.</li>
-          <li>Classifies the request and routes it to Jira or ServiceNow based on the issue type.</li>
-          <li>Creates the ticket and sends a confirmation email with the ticket number.</li>
-          <li>Assigns the work and records actions in an audit log for visibility and traceability.</li>
+          <li>Uses AI to extract structured issue details from unstructured email requests.</li>
+          <li>Classifies and routes requests to Jira or ServiceNow based on issue type.</li>
+          <li>Automates ticket creation, user notification, and assignment without manual intervention.</li>
+          <li>Maintains audit logs to support visibility, traceability, and operational monitoring.</li>
         </ul>
       </div>
     </div>
