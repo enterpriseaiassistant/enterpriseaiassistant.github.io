@@ -61,16 +61,33 @@
       min-height: 100vh;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 28px 36px 40px;
+      padding: 12px 36px 40px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .topbar {
+    .header-row {
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
     }
 
     .back-btn {
@@ -78,27 +95,12 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
+      margin-top: 6px;
+      white-space: nowrap;
     }
 
     .back-btn:hover {
       text-decoration: underline;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 2px;
-      color: #0f172a;
-    }
-
-    .subtitle {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
     }
 
     .summary-grid {
@@ -139,8 +141,6 @@
     .full-width-panel {
       width: 100%;
     }
-
-    /* ===== TECHNOLOGY STACK (2 ROWS ONLY) ===== */
 
     .tech-two-rows {
       display: flex;
@@ -205,38 +205,46 @@
     }
 
     @media (max-width: 900px) {
+      .header-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
       .summary-grid {
         grid-template-columns: 1fr;
       }
 
       .page {
-        padding: 24px 20px 32px;
+        padding: 12px 20px 32px;
       }
 
       h1 {
         font-size: 2rem;
+      }
+
+      .tech-row:first-child {
+        flex-wrap: wrap;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="topbar">
-      <a href="index.html" class="back-btn">← Back to Home</a>
-    </div>
 
-    <div class="hero">
-      <h1>Onboarding Assistant</h1>
-      <div class="subtitle">Guided onboarding support prototype</div>
+    <div class="header-row">
+      <div class="title-block">
+        <h1>Onboarding Assistant</h1>
+        <div class="subtitle">Guided onboarding support prototype</div>
+      </div>
+
+      <a href="index.html" class="back-btn">← Back to Home</a>
     </div>
 
     <div class="summary-grid">
       <div class="panel">
         <h2>Overview</h2>
         <p>
-          Onboarding Assistant is a prototype designed to help users move through onboarding
-          steps more easily by providing guided assistance, reducing confusion, and making the
-          process more consistent.
+          Onboarding Assistant is an AI-powered interface that guides users through onboarding in a structured and consistent manner, provides step-by-step assistance, and helps ensure onboarding is completed efficiently.
         </p>
       </div>
 
@@ -244,13 +252,11 @@
         <h2>Technology Stack Used</h2>
 
         <div class="tech-two-rows">
-          <!-- Row 1 -->
           <div class="tech-row">
             <div class="tech-badge">OpenAI GPT</div>
             <div class="tech-badge">RAG</div>
           </div>
 
-          <!-- Row 2 -->
           <div class="tech-row">
             <div class="tech-badge">ServiceNow</div>
           </div>
@@ -261,18 +267,18 @@
       <div class="panel">
         <h2>Key Challenges</h2>
         <ul>
-          <li><strong>Resource-intensive and time-consuming onboarding:</strong> User onboarding requires repeated execution of the same steps, which can make the process slow and labor-intensive.</li>
-          <li><strong>Experienced technical staff handling routine tasks:</strong> Skilled technical resources often spend time on repetitive, low-value onboarding activities instead of higher-value work.</li>
+          <li><strong>High volume of repetitive onboarding tasks:</strong> Onboarding requires repeated execution of the same steps, making the process time-consuming and inefficient.</li>
+          <li><strong>Delays for users during onboarding:</strong> When onboarding is not streamlined, users experience confusion and slower completion of required steps.</li>
         </ul>
       </div>
 
       <div class="panel">
         <h2>How It Helps</h2>
         <ul>
-          <li>Guides users through onboarding steps in a structured and consistent way.</li>
-          <li>Reduces repetitive manual support effort for common onboarding requests.</li>
-          <li>Improves clarity and user experience during the onboarding process.</li>
-          <li>Helps shift routine support work away from experienced technical staff.</li>
+          <li>Guides users through structured onboarding steps to ensure consistency.</li>
+          <li>Reduces repetitive manual effort for common onboarding activities.</li>
+          <li>Improves clarity for users throughout the onboarding process.</li>
+          <li>Enforces a structured flow to ensure onboarding is completed correctly.</li>
         </ul>
       </div>
     </div>
