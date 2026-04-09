@@ -197,6 +197,52 @@
       border-radius: 10px;
     }
 
+    .zoomable-image {
+      cursor: zoom-in;
+      transition: transform 0.2s ease;
+    }
+
+    .zoomable-image:hover {
+      transform: scale(1.01);
+    }
+
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.88);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .image-modal.open {
+      display: flex;
+    }
+
+    .image-modal-content {
+      max-width: 95vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      background: white;
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 26px;
+      font-size: 2.2rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 400;
+      line-height: 1;
+      user-select: none;
+    }
+
     .caption {
       margin-top: 10px;
       color: var(--text-muted);
@@ -224,6 +270,15 @@
 
       .tech-row:first-child {
         flex-wrap: wrap;
+      }
+
+      .image-modal {
+        padding: 16px;
+      }
+
+      .image-modal-close {
+        top: 12px;
+        right: 18px;
       }
     }
   </style>
@@ -289,7 +344,7 @@
         <img
           src="enterprise-assistant-useCase.png"
           alt="Enterprise Assistant Use Case Diagram"
-          class="usecase-image"
+          class="usecase-image zoomable-image"
         />
       </div>
       <div class="caption">
@@ -305,7 +360,7 @@
         <img
           src="enterprise-assistant-architecture.png"
           alt="Enterprise Assistant Architecture Diagram"
-          class="diagram-image"
+          class="diagram-image zoomable-image"
         />
       </div>
       <div class="caption">
@@ -316,5 +371,46 @@
     </div>
 
   </div>
+
+  <div id="imageModal" class="image-modal" aria-hidden="true">
+    <span class="image-modal-close" aria-label="Close image viewer">&times;</span>
+    <img id="imageModalImg" class="image-modal-content" alt="Expanded diagram" />
+  </div>
+
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('imageModalImg');
+    const closeBtn = document.querySelector('.image-modal-close');
+    const zoomableImages = document.querySelectorAll('.zoomable-image');
+
+    zoomableImages.forEach((img) => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || 'Expanded diagram';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
