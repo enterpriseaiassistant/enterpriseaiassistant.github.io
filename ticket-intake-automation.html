@@ -5,31 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ticket Intake Automation</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg-start: #eaf2ff;
       --bg-end: #dbeafe;
-      --bg-card: rgba(255,255,255,0.88);
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --bg-card-strong: rgba(255, 255, 255, 0.96);
       --accent-primary: #2563eb;
-      --text-primary: #1c1410;
-      --text-secondary: #5f6b7a;
-      --text-muted: #7b8794;
-      --border-soft: rgba(37, 99, 235, 0.10);
-      --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+      --accent-primary-dark: #1d4ed8;
+      --text-primary: #000000;
+      --text-secondary: #000000;
+      --text-muted: #1f2937;
+      --border-soft: rgba(37, 99, 235, 0.12);
+      --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 24px 60px rgba(15, 23, 42, 0.16);
+      --radius-card: 22px;
+      --radius-inner: 16px;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       min-height: 100%;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
       color: var(--text-primary);
+      scroll-behavior: smooth;
     }
 
     body {
-      overflow-y: auto;
       position: relative;
+      overflow-y: auto;
     }
 
     body::before {
@@ -38,9 +49,9 @@
       inset: 0;
       z-index: 0;
       background:
-        radial-gradient(ellipse 55% 45% at 0% 0%, rgba(96,165,250,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse 45% 40% at 100% 100%, rgba(59,130,246,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 35% at 100% 0%, rgba(191,219,254,0.18) 0%, transparent 50%);
+        radial-gradient(ellipse 60% 48% at 0% 0%, rgba(96, 165, 250, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 42% 38% at 100% 100%, rgba(59, 130, 246, 0.14) 0%, transparent 48%),
+        radial-gradient(ellipse 36% 30% at 100% 0%, rgba(191, 219, 254, 0.22) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -49,19 +60,22 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      background-image: radial-gradient(rgba(37,99,235,0.05) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px);
       background-size: 28px 28px;
       pointer-events: none;
       opacity: 0.35;
     }
 
+    body.presentation-open {
+      overflow: hidden;
+    }
+
     .page {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 12px 36px 40px;
+      padding: 22px 34px 42px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -71,348 +85,862 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      gap: 20px;
+      padding: 8px 2px 4px;
     }
 
     .title-block {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0;
-      color: #0f172a;
+      font-size: 2.45rem;
+      line-height: 1.08;
+      color: var(--text-primary);
     }
 
     .subtitle {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
+      font-size: 1.06rem;
+      color: #000000;
+    }
+
+    .helper-copy {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      color: #111111;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      min-width: 180px;
+    }
+
+    .back-btn,
+    .present-all-btn,
+    .section-present-btn,
+    .overlay-close,
+    .overlay-nav button {
+      border: none;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn,
+    .present-all-btn {
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
     }
 
     .back-btn {
+      background: rgba(255, 255, 255, 0.86);
       color: var(--accent-primary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-top: 6px;
-      white-space: nowrap;
+      border: 1px solid rgba(37, 99, 235, 0.16);
     }
 
-    .back-btn:hover {
-      text-decoration: underline;
+    .present-all-btn {
+      background: var(--accent-primary);
+      color: #ffffff;
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+    .back-btn:hover,
+    .present-all-btn:hover,
+    .section-present-btn:hover,
+    .overlay-close:hover,
+    .overlay-nav button:hover {
+      transform: translateY(-1px);
     }
 
-    .panel {
+    .section-card {
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 20px;
+      border-radius: var(--radius-card);
       box-shadow: var(--shadow-card);
       backdrop-filter: blur(6px);
+      padding: 22px 24px 24px;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
     }
 
-    .panel h2 {
-      font-size: 1.15rem;
-      margin-bottom: 12px;
-      color: var(--accent-primary);
+    .section-card:hover {
+      border-color: rgba(37, 99, 235, 0.22);
+      box-shadow: 0 18px 44px rgba(37, 99, 235, 0.08);
+      transform: translateY(-2px);
     }
 
-    .panel p, .panel li {
-      color: var(--text-secondary);
-      line-height: 1.55;
-      font-size: 0.96rem;
-    }
-
-    ul {
-      padding-left: 18px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .full-width-panel {
-      width: 100%;
-    }
-
-    .tech-two-rows {
+    .section-head {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 6px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
     }
 
-    .tech-row {
+    .section-title-wrap {
       display: flex;
+      align-items: center;
       gap: 10px;
+      min-width: 0;
     }
 
-    .tech-row:first-child {
-      flex-wrap: nowrap;
+    .section-number {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #eff6ff;
+      color: var(--accent-primary);
+      font-weight: 700;
+      font-size: 0.93rem;
     }
 
-    .tech-row:last-child {
-      flex-wrap: wrap;
+    .section-card h2 {
+      font-size: 1.18rem;
+      color: var(--accent-primary);
+      line-height: 1.2;
     }
 
-    .tech-badge {
+    .section-present-btn {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
       background: #eff6ff;
       color: var(--accent-primary);
       border: 1px solid #bfdbfe;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      white-space: nowrap;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .section-body {
+      color: #000000;
+    }
+
+    .section-body ul {
+      padding-left: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-body li,
+    .section-body p {
+      font-size: 0.99rem;
+      line-height: 1.65;
+      color: #000000;
     }
 
     .diagram-wrapper {
       width: 100%;
-      height: 520px;
-      background: rgba(239,246,255,0.85);
+      min-height: 420px;
+      background: rgba(239, 246, 255, 0.88);
       border: 1px solid #dbeafe;
-      border-radius: 14px;
-      padding: 12px;
-      overflow: hidden;
+      border-radius: var(--radius-inner);
+      padding: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      overflow: hidden;
     }
 
-    .diagram-image,
-    .usecase-image {
-      max-width: 100%;
-      max-height: calc(100% - 24px);
-      width: auto;
+    .diagram-wrapper img {
+      width: 100%;
       height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
       display: block;
-      border-radius: 10px;
     }
 
-    .zoomable-image {
-      cursor: zoom-in;
-      transition: transform 0.2s ease;
+    .caption {
+      margin-top: 12px;
+      font-size: 0.93rem;
+      line-height: 1.6;
+      color: #111111;
     }
 
-    .zoomable-image:hover {
-      transform: scale(1.01);
-    }
-
-    .image-modal {
-      display: none;
+    .presentation-overlay {
       position: fixed;
-      z-index: 9999;
       inset: 0;
-      background: rgba(15, 23, 42, 0.88);
+      z-index: 30;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(10px);
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
 
-    .image-modal.open {
+    .presentation-overlay.active {
       display: flex;
     }
 
-    .image-modal-content {
-      max-width: 95vw;
+    .overlay-stage {
+      width: min(1240px, 100%);
+      height: min(92vh, 880px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96));
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 28px;
+      box-shadow: var(--shadow-strong);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .overlay-topbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 22px 72px 16px;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.10);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .overlay-title-group {
+      min-width: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .overlay-title {
+      font-size: 2rem;
+      line-height: 1.1;
+      color: var(--text-primary);
+      font-weight: 800;
+    }
+
+    .overlay-actions {
+      position: absolute;
+      right: 26px;
+      top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .overlay-close {
+      width: 44px;
+      height: 44px;
+      background: #eff6ff;
+      color: var(--accent-primary);
+      border: 1px solid #bfdbfe;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .overlay-content {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 22px 40px 12px;
+    }
+
+    .overlay-content-inner {
+      min-height: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 14px;
+      padding-top: 0;
+    }
+
+    .overlay-content .text-slide {
+      max-width: 1060px;
+      margin: 0 auto;
+      width: 100%;
+      align-self: flex-start;
+    }
+
+    .overlay-content .text-slide ul {
+      list-style: disc;
+      padding-left: 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .overlay-content .text-slide li {
+      font-size: clamp(1.2rem, 1.55vw, 1.55rem);
+      line-height: 1.34;
+      color: #000000;
+    }
+
+    .overlay-content .text-slide li strong {
+      color: var(--text-primary);
+    }
+
+    .overlay-content .diagram-slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      min-height: 100%;
+      padding-top: 0;
+    }
+
+    .overlay-content .diagram-slide .diagram-wrapper {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      height: auto;
+      max-height: 100%;
+      background: rgba(239, 246, 255, 0.92);
+      padding: 10px;
+    }
+
+    .overlay-content .diagram-slide img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .overlay-content .diagram-slide .caption {
+      max-width: 1120px;
+      margin-top: 0;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      text-align: center;
+      color: #111111;
+    }
+
+    .overlay-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 26px 24px;
+      border-top: 1px solid rgba(37, 99, 235, 0.10);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .overlay-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .overlay-nav button {
+      min-width: 120px;
+      min-height: 46px;
+      padding: 0 18px;
+      font-weight: 700;
+      background: var(--accent-primary);
+      color: #ffffff;
+      border: 1px solid var(--accent-primary);
+    }
+
+    .overlay-nav button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .overlay-nav-center {
+      font-size: 0.98rem;
+      color: #111111;
+      text-align: center;
+      line-height: 1.2;
+      min-width: 70px;
+      font-weight: 700;
+    }
+
+    .zoomable-diagram {
+      cursor: zoom-in;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(2, 6, 23, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .image-lightbox.active {
+      display: flex;
+    }
+
+    .image-lightbox-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-lightbox img {
+      max-width: 96vw;
       max-height: 92vh;
       width: auto;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      background: white;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      cursor: zoom-out;
+      background: #ffffff;
     }
 
-    .image-modal-close {
+    .image-lightbox-close {
       position: absolute;
-      top: 18px;
-      right: 26px;
-      font-size: 2.2rem;
-      color: white;
+      top: 10px;
+      right: 10px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(191, 219, 254, 0.75);
+      border-radius: 999px;
+      background: rgba(239, 246, 255, 0.95);
+      color: var(--accent-primary);
+      font: inherit;
+      font-size: 1.4rem;
+      font-weight: 700;
       cursor: pointer;
-      font-weight: 400;
-      line-height: 1;
-      user-select: none;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .caption {
-      margin-top: 10px;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
+    .image-lightbox-close:hover {
+      transform: translateY(-1px);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
+      .page {
+        padding: 18px 18px 30px;
+      }
+
       .header-row {
         flex-direction: column;
-        gap: 8px;
       }
 
-      .summary-grid {
-        grid-template-columns: 1fr;
+      .header-actions {
+        align-items: flex-start;
       }
 
-      .page {
-        padding: 12px 20px 32px;
+      .section-card {
+        padding: 18px 18px 20px;
       }
 
-      h1 {
-        font-size: 2rem;
+      .diagram-wrapper {
+        min-height: 260px;
       }
 
-      .tech-row:first-child {
+      .presentation-overlay {
+        padding: 12px;
+      }
+
+      .overlay-stage {
+        height: 94vh;
+        border-radius: 22px;
+      }
+
+      .overlay-topbar {
+        padding: 18px 56px 14px;
+      }
+
+      .overlay-title {
+        font-size: 1.55rem;
+      }
+
+      .overlay-content {
+        padding: 16px 14px 12px;
+      }
+
+      .overlay-content .text-slide ul {
+        padding-left: 26px;
+        gap: 14px;
+      }
+
+      .overlay-content .text-slide li {
+        font-size: clamp(1.02rem, 3.8vw, 1.22rem);
+        line-height: 1.3;
+      }
+
+      .overlay-content .diagram-slide img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .overlay-nav {
+        padding: 14px 18px 18px;
         flex-wrap: wrap;
       }
 
-      .image-modal {
-        padding: 16px;
+      .overlay-nav-right {
+        margin-left: auto;
       }
 
-      .image-modal-close {
-        top: 12px;
-        right: 18px;
+      .overlay-nav-center {
+        min-width: auto;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-
     <div class="header-row">
       <div class="title-block">
         <h1>Ticket Intake Automation</h1>
         <div class="subtitle">AI-powered email-to-ticket automation prototype</div>
+        <div class="helper-copy">Use the expand arrows on any section or Presentation Mode to open the slide view.</div>
       </div>
 
-      <a href="index.html" class="back-btn">← Back to Home</a>
+      <div class="header-actions">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+        <button class="present-all-btn" type="button" id="presentFromStart">Presentation Mode</button>
+      </div>
     </div>
 
-    <div class="summary-grid">
-      <div class="panel">
-        <h2>Overview</h2>
-        <p>
-          Ticket Intake Automation is an AI-powered intake interface that processes support emails end-to-end by extracting issue details, classifying requests, routing them to Jira or ServiceNow, creating tickets, assigning work, notifying users, and maintaining a complete audit trail. When requests lack sufficient detail, it proactively collects the required information.
-        </p>
-      </div>
-
-      <div class="panel">
-        <h2>Technology Stack Used</h2>
-
-        <div class="tech-two-rows">
-          <div class="tech-row">
-            <div class="tech-badge">OpenAI API</div>
-            <div class="tech-badge">Make</div>
-          </div>
-
-          <div class="tech-row">
-            <div class="tech-badge">Outlook</div>
-            <div class="tech-badge">Jira Cloud</div>
-            <div class="tech-badge">ServiceNow</div>
-            <div class="tech-badge">Google Sheets</div>
-          </div>
+    <section class="section-card" data-slide-index="0" aria-label="Overview section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">1</div>
+          <h2>Overview</h2>
         </div>
-
+        <button class="section-present-btn" type="button" aria-label="Present Overview">⤢</button>
       </div>
-
-      <div class="panel">
-        <h2>Key Challenges</h2>
+      <div class="section-body text-slide">
         <ul>
-          <li><strong>Unstructured support requests:</strong> Incoming emails must be reviewed to understand the issue and extract the information needed for ticket creation.</li>
-          <li><strong>Inconsistent routing decisions across systems:</strong> Determining whether a request belongs in Jira or ServiceNow varies by individual and slows down intake.</li>
-          <li><strong>High volume of repetitive, low-value tasks:</strong> Ticket creation, requester communication, assignment, and audit logging require repeated manual effort.</li>
+          <li><strong>End-to-end automation:</strong> Automates support intake from incoming emails through issue extraction, ticket creation, and assignment.</li>
+          <li><strong>AI-driven triage:</strong> Uses AI to identify issue details and determine the appropriate handling path.</li>
+          <li><strong>Operational efficiency:</strong> Improves consistency and efficiency across the intake process.</li>
         </ul>
       </div>
+    </section>
 
-      <div class="panel">
-        <h2>How It Helps</h2>
+    <section class="section-card" data-slide-index="1" aria-label="Key Challenges section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">2</div>
+          <h2>Key Challenges</h2>
+        </div>
+        <button class="section-present-btn" type="button" aria-label="Present Key Challenges">⤢</button>
+      </div>
+      <div class="section-body text-slide">
         <ul>
-          <li>Uses AI to extract structured issue details from unstructured email requests.</li>
-          <li>Classifies and routes requests to Jira or ServiceNow based on issue type.</li>
-          <li>Automates ticket creation, user notification, and assignment without manual intervention.</li>
-          <li>Maintains audit logs to support visibility, traceability, and operational monitoring.</li>
+          <li><strong>Unstructured requests:</strong> Support emails require manual review to identify the issue and extract the right details.</li>
+          <li><strong>Duplicate ticket creation:</strong> Users submit ServiceNow tickets, and the technical team then creates an associated Jira ticket.</li>
+          <li><strong>Missing ticket trail:</strong> Some issues are handled directly through email without a logged ticket, reducing traceability and making later follow-up harder.</li>
+          <li><strong>Delayed acknowledgment:</strong> Users do not receive acknowledgment until a technical resource begins working on them.</li>
+          <li><strong>Manual intake effort:</strong> Ticket creation and assignment rely on repetitive manual work that slows intake processing.</li>
         </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="panel full-width-panel">
-      <h2>Use Case</h2>
-      <div class="diagram-wrapper">
-        <img
-          src="ticket-intake-automation-usecase.png"
-          alt="Ticket Intake Automation Use Case Diagram"
-          class="usecase-image zoomable-image"
-        />
+    <section class="section-card" data-slide-index="2" aria-label="Use Case Diagram section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">3</div>
+          <h2>Use Case Diagram</h2>
+        </div>
+        <button class="section-present-btn" type="button" aria-label="Present Use Case Diagram">⤢</button>
       </div>
-      <div class="caption">
-        This use case diagram shows how incoming support emails are processed by the automation to
-        extract issue details, classify requests, route to the correct platform, create tickets,
-        notify the requester, and assign work.
+      <div class="section-body diagram-slide">
+        <div class="diagram-wrapper">
+          <img src="ticket-intake-automation-usecase.png" alt="Ticket Intake Automation use case diagram" class="zoomable-diagram" />
+        </div>
+        <div class="caption">Shows the end-to-end operational flow from incoming email to AI analysis, ticket creation, user acknowledgment, and assignment.</div>
       </div>
-    </div>
+    </section>
 
-    <div class="panel full-width-panel">
-      <h2>Architecture Diagram</h2>
-      <div class="diagram-wrapper">
-        <img
-          src="ticket-intake-automation-architecture.png"
-          alt="Ticket Intake Automation Architecture Diagram"
-          class="diagram-image zoomable-image"
-        />
+    <section class="section-card" data-slide-index="3" aria-label="Business Value section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">4</div>
+          <h2>Business Value</h2>
+        </div>
+        <button class="section-present-btn" type="button" aria-label="Present Business Value">⤢</button>
       </div>
-      <div class="caption">
-        The architecture shows how the solution uses Outlook, OpenAI GPT, Make, Jira Cloud,
-        ServiceNow, and logging components to automate end-to-end ticket intake and routing.
+      <div class="section-body text-slide">
+        <ul>
+          <li><strong>Eliminates duplication:</strong> Removes manual duplicate ticket creation between ServiceNow and Jira.</li>
+          <li><strong>Improves traceability:</strong> Ensures issues are logged, tracked, and auditable.</li>
+          <li><strong>Accelerates response:</strong> Speeds acknowledgment and intake handling through automated processing.</li>
+          <li><strong>Reduces manual effort:</strong> Lowers repetitive work for support and technical teams.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-card" data-slide-index="4" aria-label="Technology Used section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">5</div>
+          <h2>Technology Used</h2>
+        </div>
+        <button class="section-present-btn" type="button" aria-label="Present Technology Used">⤢</button>
+      </div>
+      <div class="section-body text-slide">
+        <ul>
+          <li><strong>OpenAI API:</strong> Issue understanding and structured classification</li>
+          <li><strong>Make:</strong> Workflow orchestration and automation</li>
+          <li><strong>Outlook:</strong> Intake mailbox and notification emails</li>
+          <li><strong>Jira Cloud:</strong> Application-related ticket creation</li>
+          <li><strong>ServiceNow:</strong> Support ticket creation</li>
+          <li><strong>Google Sheets:</strong> Assignment mapping and audit logging</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-card" data-slide-index="5" aria-label="Architecture Diagram section">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <div class="section-number">6</div>
+          <h2>Architecture Diagram</h2>
+        </div>
+        <button class="section-present-btn" type="button" aria-label="Present Architecture Diagram">⤢</button>
+      </div>
+      <div class="section-body diagram-slide">
+        <div class="diagram-wrapper">
+          <img src="ticket-intake-automation-architecture.png" alt="Ticket Intake Automation architecture diagram" class="zoomable-diagram" />
+        </div>
+        <div class="caption">Shows how Outlook, OpenAI API, Make, Jira, ServiceNow, and Google Sheets are integrated to automate intake, assignment, and audit logging.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="presentation-overlay" id="presentationOverlay" aria-hidden="true">
+    <div class="overlay-stage" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+      <div class="overlay-topbar">
+        <div class="overlay-title-group">
+          <div class="overlay-title" id="overlayTitle">Agenda</div>
+        </div>
+        <div class="overlay-actions">
+          <button class="overlay-close" type="button" id="overlayClose" aria-label="Close presentation mode">×</button>
+        </div>
+      </div>
+
+      <div class="overlay-content" id="overlayContent">
+        <div class="overlay-content-inner"></div>
+      </div>
+
+      <div class="overlay-nav">
+        <button type="button" id="prevSlideBtn">← Previous</button>
+        <div class="overlay-nav-right">
+          <div class="overlay-nav-center" id="overlayProgress"></div>
+          <button type="button" id="nextSlideBtn">Next →</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="imageModal" class="image-modal" aria-hidden="true">
-    <span class="image-modal-close" aria-label="Close image viewer">&times;</span>
-    <img id="imageModalImg" class="image-modal-content" alt="Expanded diagram" />
+
+  <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+    <div class="image-lightbox-stage">
+      <button class="image-lightbox-close" type="button" id="imageLightboxClose" aria-label="Close full-screen image">×</button>
+      <img id="imageLightboxImg" alt="Enlarged diagram" />
+    </div>
   </div>
 
   <script>
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('imageModalImg');
-    const closeBtn = document.querySelector('.image-modal-close');
-    const zoomableImages = document.querySelectorAll('.zoomable-image');
+    (function () {
+      const sections = Array.from(document.querySelectorAll('.section-card'));
+      const overlay = document.getElementById('presentationOverlay');
+      const overlayTitle = document.getElementById('overlayTitle');
+      const overlayProgress = document.getElementById('overlayProgress');
+      const overlayContent = document.querySelector('#overlayContent .overlay-content-inner');
+      const overlayClose = document.getElementById('overlayClose');
+      const prevSlideBtn = document.getElementById('prevSlideBtn');
+      const nextSlideBtn = document.getElementById('nextSlideBtn');
+      const presentFromStart = document.getElementById('presentFromStart');
+      const imageLightbox = document.getElementById('imageLightbox');
+      const imageLightboxImg = document.getElementById('imageLightboxImg');
+      const imageLightboxClose = document.getElementById('imageLightboxClose');
 
-    zoomableImages.forEach((img) => {
-      img.addEventListener('click', () => {
-        modalImg.src = img.src;
-        modalImg.alt = img.alt || 'Expanded diagram';
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
+      const agendaSlide = {
+        title: 'Agenda',
+        body: `
+          <div class="text-slide">
+            <ul>
+              <li>Overview</li>
+              <li>Key Challenges</li>
+              <li>Use Case Diagram</li>
+              <li>Business Value</li>
+              <li>Technology Used</li>
+              <li>Architecture Diagram</li>
+            </ul>
+          </div>
+        `
+      };
+
+      let activeIndex = 0;
+      let lastFocusedElement = null;
+      let lastImageFocusedElement = null;
+
+      function openImageLightbox(src, altText) {
+        lastImageFocusedElement = document.activeElement;
+        imageLightboxImg.src = src;
+        imageLightboxImg.alt = altText || 'Enlarged diagram';
+        imageLightbox.classList.add('active');
+        imageLightbox.setAttribute('aria-hidden', 'false');
+        imageLightboxClose.focus();
+      }
+
+      function closeImageLightbox() {
+        imageLightbox.classList.remove('active');
+        imageLightbox.setAttribute('aria-hidden', 'true');
+        imageLightboxImg.removeAttribute('src');
+        if (lastImageFocusedElement && typeof lastImageFocusedElement.focus === 'function') {
+          lastImageFocusedElement.focus();
+        }
+      }
+
+      function bindZoomableImages(scope) {
+        if (!scope) return;
+        scope.querySelectorAll('.diagram-wrapper img').forEach((img) => {
+          img.classList.add('zoomable-diagram');
+          img.setAttribute('title', 'Click to enlarge');
+          if (img.__zoomBound === true) return;
+          img.__zoomBound = true;
+          img.addEventListener('click', function (event) {
+            event.stopPropagation();
+            openImageLightbox(img.getAttribute('src'), img.getAttribute('alt'));
+          });
+        });
+      }
+
+      function getSlides() {
+        const contentSlides = sections.map((section) => ({
+          title: section.querySelector('h2')?.textContent?.trim() || '',
+          bodyNode: section.querySelector('.section-body')
+        }));
+        return [agendaSlide, ...contentSlides];
+      }
+
+      function renderSlide(index) {
+        const slides = getSlides();
+        const slide = slides[index];
+        if (!slide) return;
+
+        activeIndex = index;
+        overlayTitle.textContent = slide.title;
+        if (index === 0) {
+          overlayProgress.textContent = '';
+          overlayProgress.setAttribute('aria-hidden', 'true');
+        } else {
+          overlayProgress.textContent = `${index} of ${sections.length}`;
+          overlayProgress.setAttribute('aria-hidden', 'false');
+        }
+        overlayContent.innerHTML = '';
+
+        if (index === 0) {
+          overlayContent.innerHTML = slide.body;
+        } else if (slide.bodyNode) {
+          overlayContent.appendChild(slide.bodyNode.cloneNode(true));
+        }
+
+        bindZoomableImages(overlayContent);
+
+        prevSlideBtn.disabled = index === 0;
+        nextSlideBtn.disabled = index === slides.length - 1;
+      }
+
+      function openPresentation(index) {
+        lastFocusedElement = document.activeElement;
+        renderSlide(index);
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('presentation-open');
+        overlayClose.focus();
+      }
+
+      function closePresentation() {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('presentation-open');
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+          lastFocusedElement.focus();
+        }
+      }
+
+      function nextSlide() {
+        const slides = getSlides();
+        if (activeIndex < slides.length - 1) {
+          renderSlide(activeIndex + 1);
+        }
+      }
+
+      function prevSlide() {
+        if (activeIndex > 0) {
+          renderSlide(activeIndex - 1);
+        }
+      }
+
+      bindZoomableImages(document);
+
+      imageLightboxClose.addEventListener('click', closeImageLightbox);
+      imageLightbox.addEventListener('click', function (event) {
+        if (event.target === imageLightbox || event.target === imageLightboxImg) {
+          closeImageLightbox();
+        }
       });
-    });
 
-    function closeModal() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      modalImg.src = '';
-    }
+      sections.forEach((section, index) => {
+        const button = section.querySelector('.section-present-btn');
+        if (button) {
+          button.addEventListener('click', function (event) {
+            event.stopPropagation();
+            openPresentation(index + 1);
+          });
+        }
+      });
 
-    closeBtn.addEventListener('click', closeModal);
+      presentFromStart.addEventListener('click', function () {
+        openPresentation(0);
+      });
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+      overlayClose.addEventListener('click', closePresentation);
+      prevSlideBtn.addEventListener('click', prevSlide);
+      nextSlideBtn.addEventListener('click', nextSlide);
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeModal();
-      }
-    });
+      overlay.addEventListener('click', function (event) {
+        if (event.target === overlay) {
+          closePresentation();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        const imageOpen = imageLightbox.classList.contains('active');
+        if (imageOpen && event.key === 'Escape') {
+          closeImageLightbox();
+          return;
+        }
+
+        const isOpen = overlay.classList.contains('active');
+        if (!isOpen) return;
+
+        if (event.key === 'Escape') {
+          closePresentation();
+        } else if (!imageOpen && event.key === 'ArrowRight') {
+          nextSlide();
+        } else if (!imageOpen && event.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
