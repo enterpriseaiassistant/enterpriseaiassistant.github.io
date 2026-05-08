@@ -106,23 +106,24 @@
       color: #000000;
     }
 
-    .helper-copy {
-      margin-top: 4px;
-      font-size: 0.95rem;
-      color: #111111;
-    }
-
     .header-actions {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 10px;
-      min-width: 180px;
+      min-width: 260px;
+    }
+
+    .helper-copy {
+      font-size: 0.9rem;
+      color: #111111;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-align: right;
     }
 
     .back-btn,
     .present-all-btn,
-    .section-present-btn,
     .overlay-close,
     .overlay-nav button {
       border: none;
@@ -157,7 +158,6 @@
 
     .back-btn:hover,
     .present-all-btn:hover,
-    .section-present-btn:hover,
     .overlay-close:hover,
     .overlay-nav button:hover {
       transform: translateY(-1px);
@@ -194,19 +194,6 @@
       min-width: 0;
     }
 
-    .section-number {
-      flex: 0 0 auto;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #eff6ff;
-      color: var(--accent-primary);
-      font-weight: 700;
-      font-size: 0.93rem;
-    }
 
     .section-card h2 {
       font-size: 1.18rem;
@@ -214,16 +201,6 @@
       line-height: 1.2;
     }
 
-    .section-present-btn {
-      flex: 0 0 auto;
-      width: 42px;
-      height: 42px;
-      background: #eff6ff;
-      color: var(--accent-primary);
-      border: 1px solid #bfdbfe;
-      font-size: 1rem;
-      font-weight: 700;
-    }
 
     .section-body {
       color: #000000;
@@ -483,6 +460,22 @@
       font-weight: 700;
     }
 
+    .demo-slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .demo-slide strong {
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 1;
+      font-weight: 800;
+      color: #000000;
+    }
+
     .zoomable-diagram {
       cursor: zoom-in;
     }
@@ -556,6 +549,12 @@
 
       .header-actions {
         align-items: flex-start;
+        min-width: 0;
+      }
+
+      .helper-copy {
+        white-space: normal;
+        text-align: left;
       }
 
       .section-card {
@@ -623,22 +622,20 @@
       <div class="title-block">
         <h1>Ticket Intake Automation</h1>
         <div class="subtitle">AI-powered email-to-ticket automation prototype</div>
-        <div class="helper-copy">Use the expand arrows on any section or Presentation Mode to open the slide view.</div>
       </div>
 
       <div class="header-actions">
         <a href="index.html" class="back-btn">← Back to Home</a>
         <button class="present-all-btn" type="button" id="presentFromStart">Presentation Mode</button>
+        <div class="helper-copy">Tip: Use Presentation Mode for a slide-style walkthrough.</div>
       </div>
     </div>
 
     <section class="section-card" data-slide-index="0" aria-label="Overview section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">1</div>
           <h2>Overview</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Overview">⤢</button>
       </div>
       <div class="section-body text-slide">
         <ul>
@@ -653,10 +650,8 @@
     <section class="section-card" data-slide-index="1" aria-label="Current Manual Intake Process section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">2</div>
           <h2>Current Manual Intake Process</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Current Manual Intake Process">⤢</button>
       </div>
       <div class="section-body diagram-slide">
         <div class="diagram-wrapper compact-diagram-wrapper">
@@ -673,10 +668,8 @@
     <section class="section-card" data-slide-index="2" aria-label="Key Challenges section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">3</div>
           <h2>Key Challenges</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Key Challenges">⤢</button>
       </div>
       <div class="section-body text-slide">
         <ul>
@@ -691,10 +684,8 @@
     <section class="section-card" data-slide-index="3" aria-label="Use Case Diagram section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">4</div>
-          <h2>Use Case</h2>
+          <h2>Use Case Diagram</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Use Case Diagram">⤢</button>
       </div>
       <div class="section-body diagram-slide">
         <div class="diagram-wrapper">
@@ -707,10 +698,8 @@
     <section class="section-card" data-slide-index="4" aria-label="Business Value section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">5</div>
           <h2>Business Value</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Business Value">⤢</button>
       </div>
       <div class="section-body text-slide">
         <ul>
@@ -724,10 +713,8 @@
     <section class="section-card" data-slide-index="5" aria-label="Technology Used section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">6</div>
           <h2>Technology Used</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Technology Used">⤢</button>
       </div>
       <div class="section-body text-slide">
         <ul>
@@ -744,10 +731,8 @@
     <section class="section-card" data-slide-index="6" aria-label="Architecture Diagram section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <div class="section-number">7</div>
-          <h2>Architecture</h2>
+          <h2>Architecture Diagram</h2>
         </div>
-        <button class="section-present-btn" type="button" aria-label="Present Architecture Diagram">⤢</button>
       </div>
       <div class="section-body diagram-slide">
         <div class="diagram-wrapper">
@@ -814,10 +799,19 @@
               <li>Overview</li>
               <li>Current Manual Intake Process</li>
               <li>Key Challenges</li>
-              <li>Use Case</li>
+              <li>Use Case Diagram</li>
               <li>Business Value</li>
               <li>Demo</li>
             </ul>
+          </div>
+        `
+      };
+
+      const demoSlide = {
+        title: 'Demo',
+        body: `
+          <div class="demo-slide">
+            <strong>Demo</strong>
           </div>
         `
       };
@@ -859,11 +853,17 @@
       }
 
       function getSlides() {
-        const contentSlides = sections.map((section) => ({
+        const presentationSections = sections.filter((section) => {
+          const title = section.querySelector('h2')?.textContent?.trim() || '';
+          return title !== 'Technology Used' && title !== 'Architecture Diagram' && title !== 'Architecture';
+        });
+
+        const contentSlides = presentationSections.map((section) => ({
           title: section.querySelector('h2')?.textContent?.trim() || '',
           bodyNode: section.querySelector('.section-body')
         }));
-        return [agendaSlide, ...contentSlides];
+
+        return [agendaSlide, ...contentSlides, demoSlide];
       }
 
       function renderSlide(index) {
@@ -873,16 +873,11 @@
 
         activeIndex = index;
         overlayTitle.textContent = slide.title;
-        if (index === 0) {
-          overlayProgress.textContent = '';
-          overlayProgress.setAttribute('aria-hidden', 'true');
-        } else {
-          overlayProgress.textContent = `${index} of ${sections.length}`;
-          overlayProgress.setAttribute('aria-hidden', 'false');
-        }
+        overlayProgress.textContent = `${index + 1} of ${slides.length}`;
+        overlayProgress.setAttribute('aria-hidden', 'false');
         overlayContent.innerHTML = '';
 
-        if (index === 0) {
+        if (slide.body) {
           overlayContent.innerHTML = slide.body;
         } else if (slide.bodyNode) {
           overlayContent.appendChild(slide.bodyNode.cloneNode(true));
@@ -931,16 +926,6 @@
       imageLightbox.addEventListener('click', function (event) {
         if (event.target === imageLightbox || event.target === imageLightboxImg) {
           closeImageLightbox();
-        }
-      });
-
-      sections.forEach((section, index) => {
-        const button = section.querySelector('.section-present-btn');
-        if (button) {
-          button.addEventListener('click', function (event) {
-            event.stopPropagation();
-            openPresentation(index + 1);
-          });
         }
       });
 
