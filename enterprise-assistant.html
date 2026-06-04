@@ -164,6 +164,90 @@
       transform: translateY(-1px);
     }
 
+
+    .prototype-callout {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.94));
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(6px);
+      padding: 22px 24px 24px;
+    }
+
+    .prototype-callout-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .prototype-callout h2 {
+      font-size: 1.18rem;
+      color: var(--accent-primary);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .prototype-callout p {
+      max-width: 760px;
+      color: #000000;
+      line-height: 1.65;
+      font-size: 0.99rem;
+    }
+
+    .prototype-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--accent-primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .prototype-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.24);
+    }
+
+    .sample-prompts {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    .sample-prompts strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .sample-prompts ul {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .sample-prompts li {
+      margin-bottom: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(239, 246, 255, 0.9);
+      border: 1px solid #dbeafe;
+      color: #000000;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
     .section-card {
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
@@ -523,7 +607,91 @@
         text-align: left;
       }
 
-      .section-card {
+  
+    .prototype-callout {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.94));
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(6px);
+      padding: 22px 24px 24px;
+    }
+
+    .prototype-callout-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .prototype-callout h2 {
+      font-size: 1.18rem;
+      color: var(--accent-primary);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .prototype-callout p {
+      max-width: 760px;
+      color: #000000;
+      line-height: 1.65;
+      font-size: 0.99rem;
+    }
+
+    .prototype-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--accent-primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .prototype-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.24);
+    }
+
+    .sample-prompts {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    .sample-prompts strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .sample-prompts ul {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .sample-prompts li {
+      margin-bottom: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(239, 246, 255, 0.9);
+      border: 1px solid #dbeafe;
+      color: #000000;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .section-card {
         padding: 18px 18px 20px;
       }
 
@@ -594,6 +762,29 @@
         <a href="index.html" class="back-btn">← Back to Home</a>
         <button class="present-all-btn" type="button" id="presentFromStart">Presentation Mode</button>
         <div class="helper-copy">Tip: Use Presentation Mode for a slide-style walkthrough.</div>
+      </div>
+    </div>
+
+
+    <div class="prototype-callout" aria-label="Try this prototype">
+      <div class="prototype-callout-content">
+        <div>
+          <h2>Try this prototype</h2>
+          <p>
+            You can test the Enterprise Assistant using sample/demo responses. This prototype is for demonstration purposes only. Please do not enter sensitive, confidential, or production data.
+          </p>
+        </div>
+        <a href="https://chatgpt.com/g/g-69a34dd4b6308191926cd0c9d251e133-enterprise-assistant-snow" class="prototype-btn" target="_blank" rel="noopener noreferrer">Open Enterprise Assistant GPT →</a>
+      </div>
+
+      <div class="sample-prompts">
+        <strong>Sample prompts to try:</strong>
+        <ul>
+          <li>Which browsers are supported for Mobius?</li>
+          <li>Help me resolve Mobius access issue</li>
+          <li>MOVEit crashes frequently</li>
+          <li>I need access to Snowflake</li>
+        </ul>
       </div>
     </div>
 
