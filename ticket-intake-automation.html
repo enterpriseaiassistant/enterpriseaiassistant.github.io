@@ -710,21 +710,165 @@
       </div>
     </section>
 
-    <section class="section-card" data-slide-index="5" aria-label="Technology Used section">
+
+    <section class="section-card" data-slide-index="5" aria-label="Technology Stack section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>Technology Used</h2>
+          <h2>Technology Stack &amp; Integration Approach</h2>
         </div>
       </div>
       <div class="section-body text-slide">
-        <ul>
-          <li><strong>OpenAI API:</strong> Issue understanding and structured classification</li>
-          <li><strong>Make:</strong> Workflow orchestration and automation</li>
-          <li><strong>Outlook:</strong> Intake mailbox and notification emails</li>
-          <li><strong>Jira Cloud:</strong> Application-related ticket creation</li>
-          <li><strong>ServiceNow:</strong> Support ticket creation</li>
-          <li><strong>Google Sheets:</strong> Assignment mapping and audit logging</li>
-        </ul>
+        <p style="font-size:0.99rem;line-height:1.65;color:#000000;margin-bottom:18px;">
+          Each component in the prototype was chosen to prove the workflow quickly and at low cost.
+          For production implementation, Microsoft tools are recommended where appropriate because many enterprises already use
+          Microsoft 365 and Power Platform, which can help keep operational costs low.
+        </p>
+
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:0.88rem;min-width:820px;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:12px 14px;background:rgba(239,246,255,0.95);color:#000000;font-weight:700;border:1px solid rgba(37,99,235,0.16);border-right:none;border-top-left-radius:14px;width:30%;">
+                  Function / Purpose
+                </th>
+                <th style="text-align:left;padding:12px 14px;background:rgba(239,246,255,0.95);color:#000000;font-weight:700;border:1px solid rgba(37,99,235,0.16);border-right:none;width:35%;">
+                  Prototype &middot; Tool &amp; Connector
+                </th>
+                <th style="text-align:left;padding:12px 14px;background:var(--accent-primary);color:#ffffff;font-weight:700;border:1px solid var(--accent-primary);border-top-right-radius:14px;width:35%;">
+                  Production-Ready &middot; Tool &amp; Connector
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Workflow Orchestration</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Coordinates the end-to-end workflow, routing, integrations, notifications, and logging.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">Make</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make app connectors and HTTP modules.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">Power Automate</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Standard and premium connectors; HTTP actions.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">AI / LLM Processing</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Understands email context, classifies requests, and returns structured JSON.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">OpenAI API</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> HTTP module / REST API call.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">Azure OpenAI Service</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Azure OpenAI connector or HTTP action.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Email Intake &amp; Notifications</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Monitors the intake mailbox and sends notification or clarification emails.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">Outlook</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make Outlook connector.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">Outlook</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Office 365 Outlook connector.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Application Ticket Creation</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Creates application-related tickets and applies assignment details.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">Jira Cloud</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make Jira connector.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">Jira Cloud</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Power Automate Jira connector.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Service Desk Ticket Creation</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Creates service desk and non-application support tickets.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">ServiceNow</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make ServiceNow connector.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">ServiceNow</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Power Automate ServiceNow connector.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Assignment Mapping</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Stores and looks up assignment mapping during the workflow.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">Google Sheets</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make Google Sheets connector.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">SharePoint List</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Power Automate SharePoint connector.</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;border-bottom-left-radius:14px;">
+                  <strong style="color:#000000;display:block;margin-bottom:5px;">Audit Logging</strong>
+                  <div style="color:#1f2937;font-size:0.84rem;line-height:1.45;">Records each workflow run for traceability and monitoring.</div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(255,255,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-right:none;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:#000000;">Google Sheets</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Make Google Sheets connector.</div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px;vertical-align:top;background:rgba(239,246,255,0.72);border:1px solid rgba(37,99,235,0.12);border-top:none;border-bottom-right-radius:14px;">
+                  <div style="display:flex;flex-direction:column;gap:6px;color:#1f2937;font-size:0.84rem;line-height:1.42;">
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Tool:</span> <strong style="color:var(--accent-primary-dark);">Dataverse</strong></div>
+                    <div><span style="display:inline-block;min-width:78px;color:#000000;font-weight:700;">Connector:</span> Power Automate Dataverse connector.</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -801,6 +945,7 @@
               <li>Key Challenges</li>
               <li>Use Case Diagram</li>
               <li>Business Value</li>
+              <li>Technology Stack &amp; Integration Approach</li>
               <li>Demo</li>
             </ul>
           </div>
@@ -855,7 +1000,7 @@
       function getSlides() {
         const presentationSections = sections.filter((section) => {
           const title = section.querySelector('h2')?.textContent?.trim() || '';
-          return title !== 'Technology Used' && title !== 'Architecture Diagram' && title !== 'Architecture';
+          return title !== 'Architecture Diagram' && title !== 'Architecture';
         });
 
         const contentSlides = presentationSections.map((section) => ({
@@ -863,7 +1008,14 @@
           bodyNode: section.querySelector('.section-body')
         }));
 
-        return [agendaSlide, ...contentSlides, demoSlide];
+        const technologyIndex = contentSlides.findIndex((slide) => slide.title === 'Technology Stack & Integration Approach');
+        if (technologyIndex >= 0) {
+          contentSlides.splice(technologyIndex + 1, 0, demoSlide);
+        } else {
+          contentSlides.push(demoSlide);
+        }
+
+        return [agendaSlide, ...contentSlides];
       }
 
       function renderSlide(index) {
