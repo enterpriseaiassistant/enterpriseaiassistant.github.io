@@ -345,6 +345,104 @@
       color: #111111;
     }
 
+    .tech-intro {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #111111;
+      margin-bottom: 16px;
+    }
+
+    .tech-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-inner);
+      border: 1px solid var(--border-soft);
+      background: var(--bg-card-strong);
+    }
+
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 640px;
+    }
+
+    .tech-table thead th {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--accent-primary-dark);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      white-space: nowrap;
+    }
+
+    .tech-table tbody td {
+      padding: 14px 16px;
+      vertical-align: top;
+      color: #111111;
+      line-height: 1.55;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+    }
+
+    .tech-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tech-table tbody tr:nth-child(even) {
+      background: rgba(239, 246, 255, 0.55);
+    }
+
+    .tech-table .fn-name {
+      display: block;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 3px;
+    }
+
+    .tech-table .fn-desc {
+      display: block;
+      font-size: 0.86rem;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+
+    .tech-table .tool-name {
+      font-weight: 600;
+      color: var(--accent-primary-dark);
+    }
+
+    .tech-table .cell-line {
+      display: block;
+      line-height: 1.5;
+    }
+
+    .tech-table .cell-line + .cell-line {
+      margin-top: 5px;
+    }
+
+    .tech-table .cell-key {
+      color: #1f2937;
+      font-size: 0.85rem;
+    }
+
+    .tech-table .cell-val {
+      font-size: 0.86rem;
+      color: #111111;
+    }
+
+    @media (max-width: 700px) {
+      .tech-table {
+        font-size: 0.86rem;
+      }
+
+      .tech-table thead th,
+      .tech-table tbody td {
+        padding: 11px 12px;
+      }
+    }
+
     .footer-utility {
       display: flex;
       justify-content: center;
@@ -988,19 +1086,87 @@
       </div>
     </section>
 
-    <section class="section-card" aria-label="Technology Used section">
+    <section class="section-card" aria-label="Technology Stack and Integration Approach section">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>Technology Used</h2>
+          <h2>Technology Stack &amp; Integration Approach</h2>
         </div>
       </div>
       <div class="section-body text-slide">
-        <ul>
-          <li><strong>OpenAI GPT:</strong> Understands user questions and generates guided support responses.</li>
-          <li><strong>RAG:</strong> Retrieves relevant answers from approved enterprise documentation.</li>
-          <li><strong>Jira Cloud:</strong> Supports application-related escalation and ticket creation.</li>
-          <li><strong>ServiceNow:</strong> Supports IT, access, and service-related escalation and ticket creation.</li>
-        </ul>
+        <p class="tech-intro">
+          The prototype and production use the same core tools throughout. The differences are in how they connect:
+          knowledge retrieval moves from documents attached directly to the Custom GPT to a SharePoint site, and Jira
+          moves from a direct REST API call to the Atlassian Rovo connector.
+        </p>
+        <div class="tech-table-wrap">
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Function / Purpose</th>
+                <th>Prototype · Tool &amp; Connector</th>
+                <th>Production-Ready · Tool &amp; Connector</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="fn-name">AI / LLM Processing</span>
+                  <span class="fn-desc">Understands user questions and generates guided support responses.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">OpenAI GPT</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> Built into the Custom GPT.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">OpenAI GPT</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> Built into the Custom GPT.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="fn-name">Knowledge Retrieval (RAG)</span>
+                  <span class="fn-desc">Retrieves relevant answers to ground the assistant's responses.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">Attached documents</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> Uploaded directly to the Custom GPT knowledge base.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">SharePoint site</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> SharePoint connector available in the ChatGPT account.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="fn-name">Application Ticket Creation</span>
+                  <span class="fn-desc">Supports application-related escalation and ticket creation.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">Jira Cloud</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> Jira REST API.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">Jira Cloud</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> Atlassian Rovo connector.</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="fn-name">Service Desk Ticket Creation</span>
+                  <span class="fn-desc">Supports IT, access, and service-related escalation and ticket creation.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">ServiceNow</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> ServiceNow REST API.</span>
+                </td>
+                <td>
+                  <span class="cell-line"><span class="cell-key">Tool:</span> <span class="tool-name">ServiceNow</span></span>
+                  <span class="cell-line cell-val"><span class="cell-key">Connector:</span> ServiceNow REST API.</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -1079,7 +1245,7 @@
               <li>How It Works</li>
               <li>The Solution</li>
               <li>Demo</li>
-              <li>Technology Used</li>
+              <li>Technology Stack &amp; Integration Approach</li>
               <li>Architecture</li>
             </ul>
           </div>
