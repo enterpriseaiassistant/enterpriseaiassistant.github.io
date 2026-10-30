@@ -362,20 +362,31 @@
 
     .tech-table {
       width: 100%;
+      table-layout: fixed;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       min-width: 640px;
+    }
+
+    .tech-table thead th:first-child {
+      width: 34%;
+    }
+
+    .tech-table thead th:nth-child(2),
+    .tech-table thead th:nth-child(3) {
+      width: 33%;
     }
 
     .tech-table thead th {
       background: rgba(37, 99, 235, 0.08);
       color: var(--accent-primary-dark);
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       text-align: left;
       padding: 14px 16px;
       border-bottom: 1px solid var(--border-soft);
-      white-space: nowrap;
+      line-height: 1.5;
+      white-space: normal;
     }
 
     .tech-table tbody td {
@@ -394,22 +405,30 @@
       background: rgba(239, 246, 255, 0.55);
     }
 
+    .tech-table thead th:nth-child(3) {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .tech-table tbody td:nth-child(3) {
+      background: rgba(37, 99, 235, 0.04);
+    }
+
     .tech-table .fn-name {
       display: block;
       font-weight: 700;
       color: #000000;
-      margin-bottom: 3px;
+      margin-bottom: 6px;
     }
 
     .tech-table .fn-desc {
       display: block;
-      font-size: 0.86rem;
+      font-size: 0.9rem;
       color: #1f2937;
       line-height: 1.5;
     }
 
     .tech-table .tool-name {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent-primary-dark);
     }
 
@@ -419,22 +438,27 @@
     }
 
     .tech-table .cell-line + .cell-line {
-      margin-top: 5px;
+      margin-top: 8px;
     }
 
     .tech-table .cell-key {
-      color: #1f2937;
-      font-size: 0.85rem;
+      color: #475569;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     .tech-table .cell-val {
-      font-size: 0.86rem;
-      color: #111111;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .overlay-content .tech-table tbody td {
+      padding: 8px 16px;
     }
 
     @media (max-width: 700px) {
       .tech-table {
-        font-size: 0.86rem;
+        font-size: 0.95rem;
       }
 
       .tech-table thead th,
