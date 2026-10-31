@@ -767,8 +767,19 @@
 
     table.tech-table {
       width: 100%;
+      table-layout: fixed;
       border-collapse: collapse;
       font-size: 0.95rem;
+      min-width: 640px;
+    }
+
+    table.tech-table thead th:first-child {
+      width: 34%;
+    }
+
+    table.tech-table thead th:nth-child(2),
+    table.tech-table thead th:nth-child(3) {
+      width: 33%;
     }
 
     table.tech-table th,
@@ -785,7 +796,8 @@
       background: rgba(239, 246, 255, 0.95);
       color: var(--accent-primary);
       font-weight: 700;
-      font-size: 0.93rem;
+      font-size: 0.92rem;
+      white-space: normal;
       letter-spacing: 0.01em;
       border-bottom: 1px solid rgba(37, 99, 235, 0.22);
     }
@@ -800,28 +812,72 @@
       background: rgba(239, 246, 255, 0.45);
     }
 
+    table.tech-table thead th:nth-child(3) {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    table.tech-table tbody tr td:nth-child(3) {
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    table.tech-table tbody td {
+      color: #000000;
+    }
+
     table.tech-table .fn-name {
       display: block;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     table.tech-table .fn-desc {
       display: block;
       color: #1f2937;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 1.5;
       font-weight: 400;
     }
 
     table.tech-table .cell-label {
+      color: #000000;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    table.tech-table .tool-name {
       color: var(--accent-primary);
       font-weight: 700;
     }
 
+    table.tech-table .cell-line {
+      display: block;
+      line-height: 1.5;
+    }
+
+    table.tech-table .cell-line + .cell-line {
+      margin-top: 8px;
+    }
+
+    table.tech-table .cell-val {
+      font-size: 0.9rem;
+    }
+
     .overlay-content .text-slide table.tech-table {
-      font-size: clamp(0.95rem, 1.05vw, 1.15rem);
+      font-size: 0.95rem;
+    }
+
+    .overlay-content table.tech-table tbody th,
+    .overlay-content table.tech-table tbody td {
+      padding: 8px 16px;
+    }
+
+    @media (max-width: 700px) {
+      table.tech-table thead th,
+      table.tech-table tbody th,
+      table.tech-table tbody td {
+        padding: 11px 12px;
+      }
     }
 
     .overlay-content .text-slide .tech-intro {
@@ -981,16 +1037,16 @@
                   <span class="fn-name">AI / LLM Processing</span>
                   <span class="fn-desc">Interprets the team member's question and generates the response.</span>
                 </th>
-                <td><span class="cell-label">Tool:</span> OpenAI GPT<br /><span class="cell-label">Connector:</span> Built into the Custom GPT.</td>
-                <td><span class="cell-label">Tool:</span> OpenAI GPT<br /><span class="cell-label">Connector:</span> Built into the Custom GPT.</td>
+                <td><span class="cell-line"><span class="cell-label">Tool:</span> <span class="tool-name">OpenAI GPT</span></span><span class="cell-line cell-val"><span class="cell-label">Connector:</span> Built into the Custom GPT.</span></td>
+                <td><span class="cell-line"><span class="cell-label">Tool:</span> <span class="tool-name">OpenAI GPT</span></span><span class="cell-line cell-val"><span class="cell-label">Connector:</span> Built into the Custom GPT.</span></td>
               </tr>
               <tr>
                 <th scope="row">
                   <span class="fn-name">Knowledge Retrieval (RAG)</span>
                   <span class="fn-desc">Retrieves the relevant passage from the team's documentation to ground the response and cite its source.</span>
                 </th>
-                <td><span class="cell-label">Tool:</span> Attached documents<br /><span class="cell-label">Connector:</span> Uploaded directly to the Custom GPT knowledge base.</td>
-                <td><span class="cell-label">Tool:</span> SharePoint site<br /><span class="cell-label">Connector:</span> Microsoft Graph API.</td>
+                <td><span class="cell-line"><span class="cell-label">Tool:</span> <span class="tool-name">Attached documents</span></span><span class="cell-line cell-val"><span class="cell-label">Connector:</span> Uploaded directly to the Custom GPT knowledge base.</span></td>
+                <td><span class="cell-line"><span class="cell-label">Tool:</span> <span class="tool-name">SharePoint site</span></span><span class="cell-line cell-val"><span class="cell-label">Connector:</span> Microsoft Graph API.</span></td>
               </tr>
             </tbody>
           </table>
